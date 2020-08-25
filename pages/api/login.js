@@ -30,7 +30,7 @@ handler.use(dbMiddleware).post(async (req, res) => {
 
         req.session.set("user", { email, name: user.name, userType: user.userType });
         await req.session.save();
-        return res.status(200).json();
+        return res.status(200).json({});
     } catch (error) {
         return res.status(500).json(error);
     }

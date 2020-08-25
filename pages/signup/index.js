@@ -2,18 +2,20 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { Form, Button, Container } from "react-bootstrap";
-import { useRef } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { signUp } from "../../redux/user/actions";
 import withAuth, { withAuthServerSideProps } from "../../hoc/withAuth";
 
 function SignUp() {
-    const router = useRouter();
     const nameRef = useRef();
     const emailRef = useRef();
     const passwordRef = useRef();
     const confirmPasswordRef = useRef();
     const isLoading = useSelector((state) => state.user.isLoading);
+    const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+    const dispatch = useDispatch();
+    const router = useRouter();
 
     const submitFormSignUp = async (e) => {
         e.preventDefault();
@@ -23,8 +25,14 @@ function SignUp() {
         const password = passwordRef.current.value;
         const confirmPassword = confirmPasswordRef.current.value;
 
-        dispatchEvent(signUp({ email, name, password, confirmPassword }));
+        dispatch(signUp({ email, name, password, confirmPassword }));
     };
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            router.replace("/");
+        }
+    }, [isAuthenticated]);
 
     return (
         <div className='sign-up'>

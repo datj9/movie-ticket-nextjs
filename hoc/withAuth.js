@@ -9,11 +9,8 @@ export function withAuthServerSideProps() {
             const user = req.session.get("user");
 
             if (!user) {
-                res.statusCode = 404;
-                res.end();
                 return { props: { user: {} } };
             }
-
             return {
                 props: { user },
             };
@@ -31,8 +28,12 @@ export function withAuthServerSideProps() {
 export default function withAuth(WrappedComponent) {
     return (props) => {
         const dispatch = useDispatch();
-        console.log(props.user);
-        dispatch({ type: SET_USER, payload: props.user });
+        const user = props.user;
+
+        if (Object.keys(user).length > 0) {
+            dispatch({ type: SET_USER, payload: user });
+        }
+
         return <WrappedComponent {...props} />;
     };
 }

@@ -31,7 +31,7 @@ handler.use(dbMiddleware).post(async (req, res) => {
         await req.db.collection("user").insertOne({ email, name, password: hash, userType: "client" });
         req.session.set("user", { email, name, userType: "client" });
         await req.session.save();
-        return res.status(201).json();
+        return res.status(201).json({});
     } catch (error) {
         return res.status(500).json(error);
     }

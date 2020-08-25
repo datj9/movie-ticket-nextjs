@@ -1,12 +1,10 @@
 import "../styles/globals.scss";
-import Header from "../components/MyHeader";
+import Header from "../components/Header";
 import { wrapper } from "../redux/store";
 
 function MyApp({ Component, pageProps }) {
-    console.log();
     return (
         <>
-            <Header />
             <Component {...pageProps} />;
         </>
     );

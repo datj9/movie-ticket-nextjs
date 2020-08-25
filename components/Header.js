@@ -1,18 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Nav, Navbar, Container, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { logOut } from "../redux/user/actions";
+import { useRouter } from "next/router";
 
 const Header = () => {
-    const [navLinkActive, setNavLinkActive] = useState(0);
     const dispatch = useDispatch();
     const changeLinkActive = (indexMenu) => {
         setNavLinkActive(indexMenu);
     };
     const currentUser = useSelector((state) => state.user.currentUser);
     const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+    const message = useSelector((state) => state.user.message);
+    const router = useRouter();
 
+    useEffect(() => {
+        if (message === "logged out success") {
+            router.push("/");
+        }
+    }, [message]);
     return (
         <Navbar variant='dark' bg='dark' expand='lg'>
             <Container>
@@ -23,10 +30,7 @@ const Header = () => {
                 <Navbar.Collapse className='justify-content-end' id='basic-navbar-nav'>
                     <Nav className=''>
                         <Link href='/'>
-                            <a
-                                onClick={() => changeLinkActive(0)}
-                                className={`nav-link text-center ${navLinkActive === 0 ? "active" : ""}`}
-                            >
+                            <a className='nav-link text-center d-flex align-items-center'>
                                 <span className='link text-primary'>Movies</span>
                             </a>
                         </Link>
@@ -40,16 +44,17 @@ const Header = () => {
                         </Link> */}
                         {isAuthenticated ? null : (
                             <Link href='/login'>
-                                <a
-                                    onClick={() => changeLinkActive(2)}
-                                    className={`nav-link text-center ${navLinkActive === 0 ? "active" : ""}`}
-                                >
+                                <a className='nav-link text-center'>
                                     <Button>Sign In</Button>
                                 </a>
                             </Link>
                         )}
-                        {isAuthenticated ? <span className='text-white'>Hi, {currentUser.name}</span> : null}
-                        {isAuthenticated ? <Button onClick={() => dispatch(logOut())}>Log Out</Button> : null}
+
+                        {isAuthenticated ? (
+                            <span className='nav-link'>
+                                <Button onClick={() => dispatch(logOut())}>Log Out</Button>
+                            </span>
+                        ) : null}
                     </Nav>
                 </Navbar.Collapse>
             </Container>
