@@ -31,7 +31,7 @@ export function withAuthServerSideProps() {
 export default function withAuth(WrappedComponent) {
     return (props) => {
         const dispatch = useDispatch();
-
+        console.log(props.user);
         dispatch({ type: SET_USER, payload: props.user });
         return <WrappedComponent {...props} />;
     };

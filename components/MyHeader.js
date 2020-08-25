@@ -30,14 +30,14 @@ const Header = () => {
                                 <span className='link text-primary'>Movies</span>
                             </a>
                         </Link>
-                        <Link href='/'>
+                        {/* <Link href='/'>
                             <a
                                 onClick={() => changeLinkActive(1)}
                                 className={`nav-link text-center ${navLinkActive === 0 ? "active" : ""}`}
                             >
                                 <span className='link text-primary'>Theaters</span>
                             </a>
-                        </Link>
+                        </Link> */}
                         {isAuthenticated ? null : (
                             <Link href='/login'>
                                 <a
