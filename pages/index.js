@@ -1,65 +1,200 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+import "../styles/Home.module.scss";
+import { Carousel, Card, Button, Row, Col } from "react-bootstrap";
+import withAuth, { withAuthServerSideProps } from "../hoc/withAuth";
 
-export default function Home() {
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+function Home() {
+    return (
+        <div className='container'>
+            <Head>
+                <title>Movie Tickets</title>
+                <link rel='icon' href='/favicon.ico' />
+            </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+            <main className='main'>
+                <div className='now-showing mt-5'>
+                    <h3 className='list-title font-weight-bold pb-3 text-uppercase'>Now Showing</h3>
+                    <Row>
+                        <Col xs={6} md={4} lg={3}>
+                            <Card>
+                                <Card.Img
+                                    variant='top'
+                                    src='https://resizing.flixster.com/IaXbRF4gIPh9jireK_4VCPNfdKc=/300x0/v2/https://flxt.tmsimg.com/assets/p17387519_p_v13_ad.jpg'
+                                />
+                                <Card.Body className='d-flex flex-column'>
+                                    <Card.Title>Swallow</Card.Title>
+                                    <Button className='p-1 mb-2' variant='info'>
+                                        More Detail
+                                    </Button>
+                                    <Button className='p-1' variant='primary'>
+                                        Buy Ticket
+                                    </Button>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                        <Col xs={6} md={4} lg={3}>
+                            <Card>
+                                <Card.Img
+                                    className='img-fluid'
+                                    variant='top'
+                                    src='https://resizing.flixster.com/IaXbRF4gIPh9jireK_4VCPNfdKc=/300x0/v2/https://flxt.tmsimg.com/assets/p16987523_p_v13_ab.jpg'
+                                />
+                                <Card.Body className='d-flex flex-column'>
+                                    <Card.Title>Resistance</Card.Title>
+                                    <Button className='p-1 mb-2' variant='info'>
+                                        More Detail
+                                    </Button>
+                                    <Button className='p-1' variant='primary'>
+                                        Buy Ticket
+                                    </Button>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                        <Col xs={6} sm={6} md={4} lg={3}>
+                            <Card>
+                                <Card.Img
+                                    className='img-fluid'
+                                    variant='top'
+                                    src='https://resizing.flixster.com/IaXbRF4gIPh9jireK_4VCPNfdKc=/300x0/v2/https://flxt.tmsimg.com/assets/p17387953_p_v13_aa.jpg'
+                                />
+                                <Card.Body className='d-flex flex-column'>
+                                    <Card.Title>The Other Lamb</Card.Title>
+                                    <Button className='p-1 mb-2' variant='info'>
+                                        More Detail
+                                    </Button>
+                                    <Button className='p-1' variant='primary'>
+                                        Buy Ticket
+                                    </Button>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
+                </div>
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+                <div className='open-this-week mt-5'>
+                    <h3 className='list-title font-weight-bold pb-3 text-uppercase'>Opening This Week</h3>
+                    <Row>
+                        <Col xs={6} sm={6} md={4} lg={3}>
+                            <Card>
+                                <Card.Img
+                                    variant='top'
+                                    src='https://resizing.flixster.com/IaXbRF4gIPh9jireK_4VCPNfdKc=/300x0/v2/https://flxt.tmsimg.com/assets/p18109226_p_v13_aa.jpg'
+                                />
+                                <Card.Body className='d-flex flex-column'>
+                                    <Card.Title>Survive The Night</Card.Title>
+                                    <Button className='p-1 mb-2' variant='info'>
+                                        More Detail
+                                    </Button>
+                                    <Button className='p-1' variant='primary'>
+                                        Buy Ticket
+                                    </Button>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                        <Col xs={6} sm={6} md={4} lg={3}>
+                            <Card>
+                                <Card.Img
+                                    className='img-fluid'
+                                    variant='top'
+                                    src='https://resizing.flixster.com/IaXbRF4gIPh9jireK_4VCPNfdKc=/300x0/v2/https://flxt.tmsimg.com/assets/p17382312_p_v13_aa.jpg'
+                                />
+                                <Card.Body className='d-flex flex-column'>
+                                    <Card.Title>Dream Horse</Card.Title>
+                                    <Button className='p-1 mb-2' variant='info'>
+                                        More Detail
+                                    </Button>
+                                    <Button className='p-1' variant='primary'>
+                                        Buy Ticket
+                                    </Button>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
+                </div>
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+                <div className='coming-soon mt-5'>
+                    <h3 className='list-title font-weight-bold pb-3 text-uppercase'>Coming Soon</h3>
+                    <Carousel>
+                        <Carousel.Item>
+                            <Row>
+                                <Col>
+                                    <img
+                                        className='d-block w-100'
+                                        src='https://resizing.flixster.com/IaXbRF4gIPh9jireK_4VCPNfdKc=/300x0/v2/https://flxt.tmsimg.com/assets/p16970726_p_v13_aa.jpg'
+                                        alt='First slide'
+                                    />
+                                </Col>
+                                <Col>
+                                    <img
+                                        className='d-block w-100'
+                                        src='https://resizing.flixster.com/IaXbRF4gIPh9jireK_4VCPNfdKc=/300x0/v2/https://flxt.tmsimg.com/assets/p17813839_p_v13_ab.jpg'
+                                        alt='First slide'
+                                    />
+                                </Col>
+                                <Col>
+                                    <img
+                                        className='d-block w-100'
+                                        src='https://resizing.flixster.com/IaXbRF4gIPh9jireK_4VCPNfdKc=/300x0/v2/https://flxt.tmsimg.com/assets/p17760742_p_v13_ac.jpg'
+                                        alt='First slide'
+                                    />
+                                </Col>
+                                <Col>
+                                    <img
+                                        className='d-block w-100'
+                                        src='https://resizing.flixster.com/IaXbRF4gIPh9jireK_4VCPNfdKc=/300x0/v2/https://flxt.tmsimg.com/assets/p18137915_p_v13_ab.jpg'
+                                        alt='First slide'
+                                    />
+                                </Col>
+                            </Row>
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <Row>
+                                <Col>
+                                    <img
+                                        className='d-block w-100'
+                                        src='https://resizing.flixster.com/IaXbRF4gIPh9jireK_4VCPNfdKc=/300x0/v2/https://flxt.tmsimg.com/assets/p18004375_p_v13_aa.jpg'
+                                        alt='Film'
+                                    />
+                                </Col>
+                                <Col>
+                                    <img
+                                        className='d-block w-100'
+                                        src='https://resizing.flixster.com/IaXbRF4gIPh9jireK_4VCPNfdKc=/300x0/v2/https://flxt.tmsimg.com/assets/p17633537_p_v13_aa.jpg'
+                                        alt='First slide'
+                                    />
+                                </Col>
+                                <Col>
+                                    <img
+                                        className='d-block w-100'
+                                        src='https://resizing.flixster.com/IaXbRF4gIPh9jireK_4VCPNfdKc=/300x0/v2/https://flxt.tmsimg.com/assets/p18180450_p_v13_aa.jpg'
+                                        alt='First slide'
+                                    />
+                                </Col>
+                                <Col>
+                                    <img
+                                        className='d-block w-100'
+                                        src='https://resizing.flixster.com/IaXbRF4gIPh9jireK_4VCPNfdKc=/300x0/v2/https://flxt.tmsimg.com/assets/p17871471_p_v10_aa.jpg'
+                                        alt='First slide'
+                                    />
+                                </Col>
+                            </Row>
+                        </Carousel.Item>
+                    </Carousel>
+                </div>
+            </main>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+            <footer className='footer'></footer>
+            <style jsx>
+                {`
+                    .list-title {
+                        font-size: 1.4rem !important;
+                    }
+                `}
+            </style>
         </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
+    );
 }
+
+export const getServerSideProps = withAuthServerSideProps();
+
+export default withAuth(Home);

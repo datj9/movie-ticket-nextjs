@@ -1,0 +1,41 @@
+$theme-colors: (
+    "primary": #d72323,
+    "info": #3e3636,
+    "danger": teal,
+    "dark": #000,
+);
+
+@import "~bootstrap/scss/bootstrap";
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+        Helvetica Neue, sans-serif;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+button,
+.btn:focus,
+.btn:active {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.form-control {
+    border-width: 1px;
+}
+.form-control:focus {
+    outline: none;
+    box-shadow: none;
+    border: 1px solid #000;
+}
